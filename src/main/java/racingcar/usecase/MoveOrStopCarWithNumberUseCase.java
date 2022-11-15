@@ -2,7 +2,7 @@ package racingcar.usecase;
 
 import racingcar.Car;
 
-public class MoveOrStopCarWithNumberUseCaseImpl implements MoveOrStopCarUseCase {
+public class MoveOrStopCarWithNumberUseCase implements MoveOrStopCarUseCase {
 
     private static final int CAR_MOVE_LOWER_BOUND_INCLUSIVE = 4;
 

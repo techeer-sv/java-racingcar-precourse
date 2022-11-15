@@ -3,12 +3,12 @@ package racingcar;
 import racingcar.repository.CarInMemoryRepository;
 import racingcar.ui.CommandLineUserInterface;
 import racingcar.ui.UserInterface;
-import racingcar.usecase.MoveOrStopCarWithNumberUseCaseImpl;
+import racingcar.usecase.MoveOrStopCarWithNumberUseCase;
 
 public class Application {
 
     public static void main(String[] args) {
-        UserInterface ui = new CommandLineUserInterface(new CarInMemoryRepository(), new MoveOrStopCarWithNumberUseCaseImpl());
+        UserInterface ui = new CommandLineUserInterface(new CarInMemoryRepository(), new MoveOrStopCarWithNumberUseCase());
         boolean inputValid = false;
 
         while (!inputValid) {
