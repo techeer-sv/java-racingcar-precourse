@@ -1,7 +1,7 @@
 package racingcar.ui;
 
-import racingcar.Car;
-import racingcar.repository.CarRepository;
+import racingcar.domain.Car;
+import racingcar.domain.CarRepository;
 import racingcar.usecase.MoveOrStopCarUseCase;
 
 import java.util.List;

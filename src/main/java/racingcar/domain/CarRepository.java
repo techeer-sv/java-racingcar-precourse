@@ -1,10 +1,6 @@
-package racingcar.repository;
+package racingcar.domain;
 
-import racingcar.Car;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public interface CarRepository {
 

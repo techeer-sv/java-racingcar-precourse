@@ -1,6 +1,6 @@
 package racingcar;
 
-import racingcar.repository.CarInMemoryRepository;
+import racingcar.domain.CarInMemoryRepository;
 import racingcar.ui.CommandLineUserInterface;
 import racingcar.ui.UserInterface;
 import racingcar.usecase.MoveOrStopCarWithNumberUseCase;

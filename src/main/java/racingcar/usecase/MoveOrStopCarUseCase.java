@@ -1,6 +1,6 @@
 package racingcar.usecase;
 
-import racingcar.Car;
+import racingcar.domain.Car;
 
 public interface MoveOrStopCarUseCase extends MoveUseCase, StopUseCase {
 

@@ -1,6 +1,4 @@
-package racingcar.repository;
-
-import racingcar.Car;
+package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
