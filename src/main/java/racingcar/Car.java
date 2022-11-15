@@ -2,9 +2,11 @@ package racingcar;
 
 public class Car {
 
+    public static final int MAX_CAR_NAME_LENGTH = 5;
+    private static final int VELOCITY = 1;
+
     private final String name;
     private int position = 0;
-    private static final int VELOCITY = 1;
 
     public Car(String name) {
         this.name = name;

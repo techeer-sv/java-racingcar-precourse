@@ -4,19 +4,18 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.regex.PatternSyntaxException;
 
+import static racingcar.CarValidator.isValidCarName;
 import static racingcar.ui.CommandLineOutput.printCarNamePatternInvalidError;
 import static racingcar.ui.CommandLineOutput.printCarNameTooLongError;
 import static racingcar.ui.CommandLineOutput.printMoveCountInvalidError;
 
 class CommandLineInput {
 
-    private static final int MAX_CAR_NAME_LENGTH = 5;
-
     public static String[] inputCarNames() {
         try {
             String[] carNames = Console.readLine().split(",");
             for (String carName : carNames) {
-                if (carName.length() > MAX_CAR_NAME_LENGTH) {
+                if (isValidCarName(carName)) {
                     printCarNameTooLongError();
                     throw new IllegalArgumentException();
                 }
