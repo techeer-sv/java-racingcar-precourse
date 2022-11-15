@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import racingcar.Car;
 import racingcar.repository.CarRepository;
+import racingcar.usecase.MoveOrStopCarUseCase;
 import racingcar.utils.StringUtils;
 
 import java.util.ArrayList;
@@ -14,12 +15,13 @@ import java.util.stream.Collectors;
 public class CommandLineUserInterface implements UserInterface {
 
     private static final int MAX_CAR_NAME_LENGTH = 5;
-    private static final int CAR_MOVE_LOWER_BOUND_INCLUSIVE = 4;
 
     private CarRepository carRepository;
+    private MoveOrStopCarUseCase moveOrStopUseCase;
 
-    public CommandLineUserInterface(CarRepository carRepository) {
+    public CommandLineUserInterface(CarRepository carRepository, MoveOrStopCarUseCase moveOrStopUseCase) {
         this.carRepository = carRepository;
+        this.moveOrStopUseCase = moveOrStopUseCase;
     }
 
     @Override
@@ -62,15 +64,8 @@ public class CommandLineUserInterface implements UserInterface {
         askForMoveCount();
         int moveCount = inputMoveCount();
         for (int i = 0; i < moveCount; i++) {
-                int randomNumber = Randoms.pickNumberInRange(0, 9);
-
-                if (randomNumber >= CAR_MOVE_LOWER_BOUND_INCLUSIVE) {
-                    car.moveForward();
-                } else {
-                    car.stop();
-                }
-
             for (Car car : carRepository.findAll()) {
+                moveOrStopUseCase.moveOrStop(car, Randoms.pickNumberInRange(0, 9));
                 System.out.println(car.getName() + " : " + StringUtils.repeat("-", car.getPosition()));
             }
             System.out.println();
