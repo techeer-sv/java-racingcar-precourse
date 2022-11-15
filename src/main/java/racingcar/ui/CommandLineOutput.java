@@ -2,6 +2,8 @@ package racingcar.ui;
 
 import racingcar.utils.StringUtils;
 
+import static racingcar.domain.CarValidator.MAX_CAR_NAME_LENGTH;
+
 class CommandLineOutput {
 
     public static void askForCarNames() {
@@ -9,7 +11,7 @@ class CommandLineOutput {
     }
 
     public static void printCarNameTooLongError() {
-        System.out.println("[ERROR] 경주할 자동차 이름의 길이는 5 이하여야 한다.");
+        System.out.println("[ERROR] 경주할 자동차 이름의 길이는 " + MAX_CAR_NAME_LENGTH + " 이하여야 한다.");
     }
 
     public static void printCarNamePatternInvalidError() {

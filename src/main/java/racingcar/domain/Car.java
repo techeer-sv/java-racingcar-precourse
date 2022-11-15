@@ -2,7 +2,6 @@ package racingcar.domain;
 
 public class Car {
 
-    public static final int MAX_CAR_NAME_LENGTH = 5;
     private static final int VELOCITY = 1;
 
     private final String name;
