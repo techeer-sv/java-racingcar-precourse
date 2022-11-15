@@ -3,6 +3,7 @@ package racingcar.ui;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import racingcar.Car;
+import racingcar.repository.CarRepository;
 import racingcar.utils.StringUtils;
 
 import java.util.ArrayList;
@@ -12,10 +13,14 @@ import java.util.stream.Collectors;
 
 public class CommandLineUserInterface implements UserInterface {
 
-    private final List<Car> cars = new ArrayList<>();
-
     private static final int MAX_CAR_NAME_LENGTH = 5;
     private static final int CAR_MOVE_LOWER_BOUND_INCLUSIVE = 4;
+
+    private CarRepository carRepository;
+
+    public CommandLineUserInterface(CarRepository carRepository) {
+        this.carRepository = carRepository;
+    }
 
     @Override
     public void deployCars() {
@@ -57,7 +62,6 @@ public class CommandLineUserInterface implements UserInterface {
         askForMoveCount();
         int moveCount = inputMoveCount();
         for (int i = 0; i < moveCount; i++) {
-            for (Car car : cars) {
                 int randomNumber = Randoms.pickNumberInRange(0, 9);
 
                 if (randomNumber >= CAR_MOVE_LOWER_BOUND_INCLUSIVE) {
@@ -66,6 +70,7 @@ public class CommandLineUserInterface implements UserInterface {
                     car.stop();
                 }
 
+            for (Car car : carRepository.findAll()) {
                 System.out.println(car.getName() + " : " + StringUtils.repeat("-", car.getPosition()));
             }
             System.out.println();
@@ -103,13 +108,13 @@ public class CommandLineUserInterface implements UserInterface {
 
     public void createCars(String[] carNames) {
         for (String carName : carNames) {
-            cars.add(new Car(carName));
+            carRepository.create(new Car(carName));
         }
     }
 
     public int getMaxPosition() {
         int maxPosition = 0;
-        for (Car car : cars) {
+        for (Car car : carRepository.findAll()) {
             if (car.getPosition() > maxPosition) {
                 maxPosition = car.getPosition();
             }
@@ -125,7 +130,7 @@ public class CommandLineUserInterface implements UserInterface {
 
     private List<Car> getCarsAt(int position) {
         List<Car> winners = new ArrayList<>();
-        for (Car car : cars) {
+        for (Car car : carRepository.findAll()) {
             if (car.getPosition() == position) {
                 winners.add(car);
             }
