@@ -16,8 +16,8 @@ public class CommandLineUserInterface implements UserInterface {
 
     private static final int MAX_CAR_NAME_LENGTH = 5;
 
-    private CarRepository carRepository;
-    private MoveOrStopCarUseCase moveOrStopUseCase;
+    private final CarRepository carRepository;
+    private final MoveOrStopCarUseCase moveOrStopUseCase;
 
     public CommandLineUserInterface(CarRepository carRepository, MoveOrStopCarUseCase moveOrStopUseCase) {
         this.carRepository = carRepository;
