@@ -19,4 +19,26 @@ public class CarInMemoryRepository implements CarRepository {
     public List<Car> findAll() {
         return cars;
     }
+
+    @Override
+    public int getMaxPosition() {
+        int maxPosition = 0;
+        for (Car car : cars) {
+            if (car.getPosition() > maxPosition) {
+                maxPosition = car.getPosition();
+            }
+        }
+        return maxPosition;
+    }
+
+    @Override
+    public List<Car> getCarsAt(int position) {
+        List<Car> targets = new ArrayList<>();
+        for (Car car : cars) {
+            if (car.getPosition() == position) {
+                targets.add(car);
+            }
+        }
+        return targets;
+    }
 }
