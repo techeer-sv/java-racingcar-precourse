@@ -2,13 +2,14 @@ package racingcar.domain;
 
 public class Car {
 
-    private static final int VELOCITY = 1;
-
     private final String name;
+    private final int velocity;
     private int position = 0;
 
-    public Car(String name) {
+    public Car(String name, int velocity) {
+
         this.name = name;
+        this.velocity = velocity;
     }
 
     public String getName() {
@@ -20,7 +21,7 @@ public class Car {
     }
 
     public void moveForward() {
-        this.position += VELOCITY;
+        this.position += velocity;
     }
 
     public void stop() {

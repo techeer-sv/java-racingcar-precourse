@@ -7,8 +7,14 @@ import racingcar.usecase.MoveOrStopCarWithNumberUseCase;
 
 public class Application {
 
+    private static final int CAR_VELOCITY = 1;
+
     public static void main(String[] args) {
-        UserInterface ui = new CommandLineUserInterface(new CarInMemoryRepository(), new MoveOrStopCarWithNumberUseCase());
+        UserInterface ui = new CommandLineUserInterface(
+                new CarInMemoryRepository(),
+                new MoveOrStopCarWithNumberUseCase(4),
+                CAR_VELOCITY
+        );
         boolean inputValid = false;
 
         while (!inputValid) {
@@ -16,7 +22,8 @@ public class Application {
                 ui.deployCars();
                 ui.moveCars();
                 inputValid = true;
-            } catch (IllegalArgumentException ignored) {
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
         ui.getWinners();

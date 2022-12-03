@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarInMemoryRepository implements CarRepository {
 
@@ -20,23 +21,16 @@ public class CarInMemoryRepository implements CarRepository {
 
     @Override
     public int getMaxPosition() {
-        int maxPosition = 0;
-        for (Car car : cars) {
-            if (car.getPosition() > maxPosition) {
-                maxPosition = car.getPosition();
-            }
-        }
-        return maxPosition;
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElseThrow(() -> new IllegalArgumentException("위치를 비교하기 위한 자동차가 존재하지 않는다."));
     }
 
     @Override
     public List<Car> getCarsAt(int position) {
-        List<Car> targets = new ArrayList<>();
-        for (Car car : cars) {
-            if (car.getPosition() == position) {
-                targets.add(car);
-            }
-        }
-        return targets;
+        return cars.stream()
+                .filter(car -> car.getPosition() == position)
+                .collect(Collectors.toList());
     }
 }

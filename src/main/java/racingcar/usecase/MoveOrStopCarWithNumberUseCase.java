@@ -4,11 +4,15 @@ import racingcar.domain.Car;
 
 public class MoveOrStopCarWithNumberUseCase implements MoveOrStopCarUseCase {
 
-    private static final int CAR_MOVE_LOWER_BOUND_INCLUSIVE = 4;
+    private final int carMoveLowerBoundInclusive;
+
+    public MoveOrStopCarWithNumberUseCase(int carMoveLowerBoundInclusive) {
+        this.carMoveLowerBoundInclusive = carMoveLowerBoundInclusive;
+    }
 
     @Override
     public void moveOrStop(Car car, int moveNumber) {
-        if (moveNumber >= CAR_MOVE_LOWER_BOUND_INCLUSIVE) {
+        if (moveNumber >= carMoveLowerBoundInclusive) {
             move(car);
             return;
         }

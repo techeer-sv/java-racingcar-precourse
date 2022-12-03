@@ -20,10 +20,12 @@ public class CommandLineUserInterface implements UserInterface {
 
     private final CarRepository carRepository;
     private final MoveOrStopCarUseCase moveOrStopUseCase;
+    private final int carVelocity;
 
-    public CommandLineUserInterface(CarRepository carRepository, MoveOrStopCarUseCase moveOrStopUseCase) {
+    public CommandLineUserInterface(CarRepository carRepository, MoveOrStopCarUseCase moveOrStopUseCase, int carVelocity) {
         this.carRepository = carRepository;
         this.moveOrStopUseCase = moveOrStopUseCase;
+        this.carVelocity = carVelocity;
     }
 
     @Override
@@ -47,7 +49,7 @@ public class CommandLineUserInterface implements UserInterface {
     @Override
     public void getWinners() {
         int maxPosition = carRepository.getMaxPosition();
-        String winnerNames = String.join(", ", getCarNamesAt(maxPosition));
+        String winnerNames = String.join(",", getCarNamesAt(maxPosition));
         printCarNames(winnerNames);
     }
 
@@ -63,7 +65,7 @@ public class CommandLineUserInterface implements UserInterface {
 
     private void createCars(String[] carNames) {
         for (String carName : carNames) {
-            carRepository.create(new Car(carName));
+            carRepository.create(new Car(carName, carVelocity));
         }
     }
 
